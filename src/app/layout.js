@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en" data-theme="light">
       <body className={poppins.className}>
         <Nav />
-        <div className="min-h-screen w-[90%] mt-5 mx-auto">{children}</div>
+        <div className="w-[90%] mt-5 mx-auto">{children}</div>
       </body>
     </html>
   );

@@ -19,24 +19,53 @@ const Nav = () => {
   ];
 
   return (
-    <nav className="w-full bg-white shadow-md">
-    <div className="flex justify-between items-center mx-auto w-[90%] py-4">
-      <div>
-        <Link href="/" className="font-bold text-xl">
-          Doctors Portal
-        </Link>
+    <nav className="w-full md:py-4 py-2 bg-white shadow-md">
+      <div className="flex justify-between items-center mx-auto w-[90%] py-4">
+        <div>
+          <Link href="/" className="font-bold text-xl">
+            Doctors Portal
+          </Link>
+        </div>
+        <div className="hidden lg:flex">
+          <ul className="flex gap-3 items-center">
+            {navLinks.map((link) => (
+              <li key={link.path}>
+                <Link
+                  href={link.path}
+                  className={
+                    pathname === link.path
+                      ? "bg-gray-700 text-base text-white px-4 py-2 rounded-md"
+                      : "hover:bg-gray-700 text-sm hover:text-white px-4 py-2 rounded transition-all duration-300"
+                  }
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="lg:hidden">
+          <button onClick={() => setOpen(!open)} aria-label="Toggle Menu">
+            {!open ? <FaBarsStaggered size={20} /> : <RxCross2 size={25} />}
+          </button>
+        </div>
       </div>
-      <div className="hidden lg:flex">
-        <ul className="flex gap-3 items-center">
+      <div
+        className={`lg:hidden transition-all duration-300 ${
+          open ? "max-h-96" : "max-h-0"
+        } overflow-hidden`}
+      >
+        <ul className="flex flex-col gap-4 items-start px-[20px] py-2 bg-white border-t border-gray-200">
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link
                 href={link.path}
                 className={
                   pathname === link.path
-                    ? "bg-gray-700 text-white px-4 py-2 rounded-md"
-                    : "hover:bg-gray-700 hover:text-white px-4 py-2 rounded transition-all duration-300"
+                    ? "text-gray-700"
+                    : "hover:text-gray-700 transition-all duration-300"
                 }
+                onClick={() => setOpen(false)} // Close menu on link click
               >
                 {link.name}
               </Link>
@@ -44,36 +73,7 @@ const Nav = () => {
           ))}
         </ul>
       </div>
-      <div className="lg:hidden">
-        <button onClick={() => setOpen(!open)} aria-label="Toggle Menu">
-          {!open ? <FaBarsStaggered size={20} /> : <RxCross2 size={25} />}
-        </button>
-      </div>
-    </div>
-    <div
-      className={`lg:hidden transition-all duration-300 ${
-        open ? "max-h-96" : "max-h-0"
-      } overflow-hidden`}
-    >
-      <ul className="flex flex-col gap-4 items-start px-[20px] py-2 bg-white border-t border-gray-200">
-        {navLinks.map((link) => (
-          <li key={link.path}>
-            <Link
-              href={link.path}
-              className={
-                pathname === link.path
-                  ? "text-gray-700"
-                  : "hover:text-gray-700 transition-all duration-300"
-              }
-              onClick={() => setOpen(false)} // Close menu on link click
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </nav>
+    </nav>
   );
 };
 
