@@ -1,6 +1,6 @@
-"use client"
+"use client";
+import Link from "next/link";
 import React from "react";
-
 
 const page = () => {
   const handleLogin = (e) => {
@@ -38,6 +38,22 @@ const page = () => {
             Login
           </button>
         </form>
+        <p className="text-base my-3 text-center">
+          New to Doctor Portal?{" "}
+          <span>
+            <Link className="text-blue-500 cursor-pointer" href={"/register"}>
+              Create an Account
+            </Link>
+          </span>
+        </p>
+        <div className="flex items-center my-3">
+          <div className="flex-grow border-t border-gray-300"></div>
+          <span className="mx-4 text-gray-500">Or</span>
+          <div className="flex-grow border-t border-gray-300"></div>
+        </div>
+        <button className="w-full text-gray-600 border hover:text-white hover:bg-gray-600 transition-all duration-300 border-gray-600 rounded p-2">
+          Continue with Google
+        </button>
       </div>
     </div>
   );
