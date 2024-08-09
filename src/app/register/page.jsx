@@ -1,17 +1,27 @@
 "use client";
+import axios from "axios";
 import Link from "next/link";
 import React from "react";
-import { FaGoogle } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 const page = () => {
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form?.name?.value;
     const email = form?.email?.value;
     const password = form?.password?.value;
-    const info = { name, email, password };
-    console.log(info);
+    const newUser = { name, email, password };
+    try {
+      const { data } = await axios.post(`/register/api`, newUser);
+      console.log(data);
+      if (data?.created) {
+        toast.success("Account Created Successfully");
+      }
+    } catch (error) {
+      console.error("Registration Error:", error);
+      toast.error(error.response?.data?.message);
+    }
   };
   return (
     <div

@@ -1,15 +1,22 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import { signIn } from "next-auth/react";
 
 const page = () => {
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form?.email?.value;
     const password = form?.password?.value;
     const info = { email, password };
     console.log(info);
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    console.log(res);
   };
   return (
     <div

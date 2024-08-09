@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import AuthProvider from "@/services/AuthProvider";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
       <body className={poppins.className}>
+        <Toaster/>
         <AuthProvider>
           <Nav />
           <div className="w-[90%] mt-5 mx-auto">{children}</div>
