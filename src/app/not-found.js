@@ -15,7 +15,7 @@ const Error = () => {
           No Routes Found
         </h3>
         <p className="text-center">
-          May be you came at wrong place! <br />
+          You might be in the wrong place! <br />
           <span className="text-rose-500 font-bold">
             But Don't Worry, you can jump into our Home to enjoy plenty stuffs
           </span>

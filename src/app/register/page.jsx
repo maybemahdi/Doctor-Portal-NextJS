@@ -41,6 +41,11 @@ const Page = () => {
       toast.error(error.response?.data?.message);
     }
   };
+  
+  const handleSocialSignIn = async (provider) => {
+    await signIn(provider, { redirect: false });
+  };
+
   return (
     <div
       style={{ minHeight: "calc(100vh - 115px)" }}
@@ -88,7 +93,10 @@ const Page = () => {
           <span className="mx-4 text-gray-500">Or</span>
           <div className="flex-grow border-t border-gray-300"></div>
         </div>
-        <button className="w-full text-gray-600 border hover:text-white hover:bg-gray-600 transition-all duration-300 border-gray-600 rounded p-2">
+        <button
+          onClick={() => handleSocialSignIn("google")}
+          className="w-full text-gray-600 border hover:text-white hover:bg-gray-600 transition-all duration-300 border-gray-600 rounded p-2"
+        >
           Continue with Google
         </button>
       </div>

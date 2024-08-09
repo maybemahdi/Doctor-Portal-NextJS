@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/connectDB";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { NextResponse } from "next/server";
+import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
   session: {
@@ -32,8 +32,17 @@ const handler = NextAuth({
         return currentUser;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+    }),
   ],
-  callbacks: {},
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Ensure URLs are valid and handled properly
+      return url.startsWith(baseUrl) ? url : baseUrl;
+    },
+  },
   pages: {
     signIn: "/login",
   },
