@@ -5,9 +5,13 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { usePathname } from "next/navigation"; // Use usePathname instead of useRouter
 import React, { useState } from "react";
+import { signOut, useSession } from "next-auth/react";
+import Swal from "sweetalert2";
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
+  const session = useSession();
+  console.log(session);
   const pathname = usePathname(); // Get current pathname
   const navLinks = [
     { name: "Home", path: "/" },
@@ -15,8 +19,28 @@ const Nav = () => {
     { name: "Appointment", path: "/appointment" },
     { name: "Reviews", path: "/reviews" },
     { name: "Contact Us", path: "/contact" },
-    { name: "Login", path: "/login" },
   ];
+
+  const handleSignOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Sign Out!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await signOut({ redirect: false });
+        Swal.fire({
+          title: "Success!",
+          text: "Sign Out Successful",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   return (
     <nav className="w-full md:py-4 py-2 bg-white shadow-md">
@@ -42,7 +66,38 @@ const Nav = () => {
                 </Link>
               </li>
             ))}
+            {!session?.data ? (
+              <li>
+                <Link
+                  href={"/login"}
+                  className={
+                    pathname === "/login"
+                      ? "bg-gray-700 text-base text-white px-4 py-2 rounded-md"
+                      : "hover:bg-gray-700 text-sm hover:text-white px-4 py-2 rounded transition-all duration-300"
+                  }
+                >
+                  Login
+                </Link>
+              </li>
+            ) : (
+              <li>
+                <button
+                  onClick={handleSignOut}
+                  className={`px-4 py-2 rounded-md
+                    hover:bg-gray-700 hover:text-white transition-all duration-300`}
+                >
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
+        </div>
+        <div>
+          {session?.data?.user ? (
+            <p className="font-bold">{session?.data?.user?.name}</p>
+          ) : (
+            <p className="font-bold">Not Logged In</p>
+          )}
         </div>
         <div className="lg:hidden">
           <button onClick={() => setOpen(!open)} aria-label="Toggle Menu">

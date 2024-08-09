@@ -1,10 +1,13 @@
 "use client";
 import axios from "axios";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
+  const router = useRouter();
   const handleRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,8 +20,23 @@ const page = () => {
       console.log(data);
       if (data?.created) {
         toast.success("Account Created Successfully");
+        // Automatically sign the user in after successful sign-up
+        const result = await signIn("credentials", {
+          redirect: false,
+          email: newUser?.email,
+          password: newUser?.password,
+        });
+        if (result.error) {
+          console.error("Sign in failed:", result.error);
+          toast.error("Signing Failed, Try Logging In");
+        } else {
+          // Redirect to the desired page after successful login
+          form.reset();
+          router.push("/");
+        }
       }
     } catch (error) {
+      form.reset();
       console.error("Registration Error:", error);
       toast.error(error.response?.data?.message);
     }
@@ -78,4 +96,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

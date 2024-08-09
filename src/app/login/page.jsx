@@ -2,8 +2,14 @@
 import Link from "next/link";
 import React from "react";
 import { signIn } from "next-auth/react";
+import { useSearchParams, useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
+  const searchParams = useSearchParams();
+  const path = searchParams.get("redirect");
+  const router = useRouter();
+
   const handleLogin = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,8 +21,17 @@ const page = () => {
       email,
       password,
       redirect: false,
+      callbackUrl: path ? path : "/",
     });
     console.log(res);
+    if (res?.status === 401) {
+      return toast.error("Wrong Credentials");
+    }
+    if (res?.status === 200) {
+      form.reset();
+      toast.success("Login Successful");
+      router.push("/");
+    }
   };
   return (
     <div
@@ -66,4 +81,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
