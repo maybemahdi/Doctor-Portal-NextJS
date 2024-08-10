@@ -72,7 +72,7 @@ const Nav = () => {
                   href={"/login"}
                   className={
                     pathname === "/login"
-                      ? "bg-gray-700 text-base text-white px-4 py-2 rounded-md"
+                      ? "bg-gray-700 text-sm text-white px-4 py-2 rounded-md"
                       : "hover:bg-gray-700 text-sm hover:text-white px-4 py-2 rounded transition-all duration-300"
                   }
                 >
@@ -84,7 +84,7 @@ const Nav = () => {
                 <button
                   onClick={handleSignOut}
                   className={`px-4 py-2 rounded-md
-                    hover:bg-gray-700 hover:text-white transition-all duration-300`}
+                    hover:bg-gray-700 text-sm hover:text-white transition-all duration-300`}
                 >
                   Logout
                 </button>
@@ -92,9 +92,9 @@ const Nav = () => {
             )}
           </ul>
         </div>
-        <div>
+        <div className="hidden lg:block">
           {session?.data?.user ? (
-            <p className="font-bold">{session?.data?.user?.name}</p>
+            <p className="font-bold">Logged in as <span className="text-rose-500">{session?.data?.user?.name}</span></p>
           ) : (
             <p className="font-bold">Not Logged In</p>
           )}
@@ -127,6 +127,13 @@ const Nav = () => {
             </li>
           ))}
         </ul>
+        <div className="px-[20px] py-2">
+          {session?.data?.user ? (
+            <p className="font-bold">Logged in as <span className="text-rose-500">{session?.data?.user?.name}</span></p>
+          ) : (
+            <p className="font-bold">Not Logged In</p>
+          )}
+        </div>
       </div>
     </nav>
   );
