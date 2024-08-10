@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 const Nav = () => {
   const [open, setOpen] = useState(false);
   const session = useSession();
-  // console.log(session);
+  console.log(session);
   const pathname = usePathname(); // Get current pathname
   const navLinks = [
     { name: "Home", path: "/" },

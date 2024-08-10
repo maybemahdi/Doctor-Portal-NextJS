@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -9,6 +9,7 @@ const Page = () => {
   const searchParams = useSearchParams();
   const path = searchParams.get("redirect");
   const router = useRouter();
+  const session = useSession();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -37,6 +38,9 @@ const Page = () => {
   const handleSocialSignIn = async (provider) => {
     await signIn(provider, { redirect: false });
   };
+  if (session?.status === "authenticated") {
+    router.push("/");
+  }
 
   return (
     <div

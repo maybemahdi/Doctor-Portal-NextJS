@@ -21,7 +21,10 @@ const handler = NextAuth({
         }
         const db = await connectDB();
         const userCollection = db.collection("users");
-        const currentUser = await userCollection.findOne({ email });
+        const currentUser = await userCollection.findOne({
+          email,
+          provider: "credential",
+        });
         if (!currentUser) {
           return null;
         }
@@ -38,9 +41,28 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      // Ensure URLs are valid and handled properly
-      return url.startsWith(baseUrl) ? url : baseUrl;
+    async signIn({ user, account }) {
+      if (account.provider === "google") {
+        const { email } = user;
+        try {
+          const db = await connectDB();
+          const userCollection = db.collection("users");
+          const isUserExist = await userCollection.findOne({
+            email,
+            provider: "google",
+          });
+          if (!isUserExist) {
+            await userCollection.insertOne({ ...user, provider: "google" });
+            return user;
+          } else {
+            return user;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        return user;
+      }
     },
   },
   pages: {

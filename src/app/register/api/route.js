@@ -7,11 +7,11 @@ export const POST = async (request) => {
     const db = await connectDB();
     const userCollection = db.collection("users");
     console.log(newUser);
-    const isExist = await userCollection.findOne({ email: newUser?.email });
+    const isExist = await userCollection.findOne({ email: newUser?.email, provider: "credential" });
     if (isExist) {
       return NextResponse.json({ message: "User Exists" }, { status: 409 });
     }
-    await userCollection.insertOne(newUser);
+    await userCollection.insertOne({...newUser, provider: "credential"});
     return NextResponse.json({ message: "User Created", created: true }, { status: 200 });
   } catch (error) {
     console.log(error);

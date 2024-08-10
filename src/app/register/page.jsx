@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 
 const Page = () => {
   const router = useRouter();
+  const session = useSession();
+  
   const handleRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -41,10 +43,13 @@ const Page = () => {
       toast.error(error.response?.data?.message);
     }
   };
-  
+
   const handleSocialSignIn = async (provider) => {
     await signIn(provider, { redirect: false });
   };
+  if (session?.status === "authenticated") {
+    router.push("/");
+  }
 
   return (
     <div
