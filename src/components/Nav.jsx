@@ -46,7 +46,7 @@ const Nav = () => {
     <nav className="w-full md:py-4 py-2 bg-white shadow-md">
       <div className="flex justify-between items-center mx-auto w-[90%] py-4">
         <div>
-          <Link href="/" className="font-bold text-xl">
+          <Link href="/" className="font-bold text-xl text-secondary">
             Doctors Portal
           </Link>
         </div>
@@ -58,8 +58,8 @@ const Nav = () => {
                   href={link.path}
                   className={
                     pathname === link.path
-                      ? "bg-gray-700 text-base text-white px-4 py-2 rounded-md"
-                      : "hover:bg-gray-700 text-sm hover:text-white px-4 py-2 rounded transition-all duration-300"
+                      ? "bg-secondary text-base text-white px-4 py-2 rounded-md"
+                      : "hover:bg-secondary text-sm hover:text-white px-4 py-2 rounded transition-all duration-300"
                   }
                 >
                   {link.name}
@@ -72,8 +72,8 @@ const Nav = () => {
                   href={"/login"}
                   className={
                     pathname === "/login"
-                      ? "bg-gray-700 text-sm text-white px-4 py-2 rounded-md"
-                      : "hover:bg-gray-700 text-sm hover:text-white px-4 py-2 rounded transition-all duration-300"
+                      ? "bg-secondary text-sm text-white px-4 py-2 rounded-md"
+                      : "hover:bg-secondary text-sm hover:text-white px-4 py-2 rounded transition-all duration-300"
                   }
                 >
                   Login
@@ -84,7 +84,7 @@ const Nav = () => {
                 <button
                   onClick={handleSignOut}
                   className={`px-4 py-2 rounded-md
-                    hover:bg-gray-700 text-sm hover:text-white transition-all duration-300`}
+                    hover:bg-secondary text-sm hover:text-white transition-all duration-300`}
                 >
                   Logout
                 </button>
@@ -94,7 +94,10 @@ const Nav = () => {
         </div>
         <div className="hidden lg:block">
           {session?.data?.user ? (
-            <p className="font-bold">Logged in as <span className="text-rose-500">{session?.data?.user?.name}</span></p>
+            <p className="font-bold">
+              Logged in as{" "}
+              <span className="text-rose-500">{session?.data?.user?.name}</span>
+            </p>
           ) : (
             <p className="font-bold">Not Logged In</p>
           )}
@@ -129,9 +132,12 @@ const Nav = () => {
         </ul>
         <div className="px-[20px] py-2">
           {session?.data?.user ? (
-            <p className="font-bold">Logged in as <span className="text-rose-500">{session?.data?.user?.name}</span></p>
+            <p className="font-bold text-secondary">
+              Logged in as{" "}
+              <span className="text-rose-500">{session?.data?.user?.name}</span>
+            </p>
           ) : (
-            <p className="font-bold">Not Logged In</p>
+            <p className="font-bold text-secondary">Not Logged In</p>
           )}
         </div>
       </div>

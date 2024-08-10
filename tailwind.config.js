@@ -5,14 +5,16 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  // theme: {
-  //   extend: {
-  //     backgroundImage: {
-  //       "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-  //       "gradient-conic":
-  //         "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-  //     },
-  //   },
-  // },
+  theme: {
+    extend: {
+      colors: {
+        primary: 'linear-gradient(90deg, #19D3AE -22.5%, #0FCFEC 120.83%)',
+        secondary: "#3A4256",
+      },
+    },
+    backgroundImage: {
+      'primary-gradient': 'linear-gradient(90deg, #19D3AE -22.5%, #0FCFEC 120.83%)',
+    },
+  },
   plugins: [],
 };
