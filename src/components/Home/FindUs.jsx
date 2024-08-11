@@ -11,14 +11,13 @@ const FindUs = () => {
       <div
         style={{
           background: "linear-gradient(90deg, #19D3AE -22.5%, #0FCFEC 120.83%)",
-          transition: "background 0.3s ease-in-out",
         }}
         onMouseEnter={(e) => (e.currentTarget.style.background = "#3A4256")} // secondary color
         onMouseLeave={(e) =>
           (e.currentTarget.style.background =
             "linear-gradient(90deg, #19D3AE -22.5%, #0FCFEC 120.83%)")
         }
-        className="duration-300 flex gap-5 items-center justify-center px-6 rounded-[14px] h-[190px]"
+        className="transition-all duration-500 flex gap-5 items-center justify-center px-6 rounded-[14px] h-[190px]"
       >
         <div>
           <Image alt="Clock" src={clock} />
@@ -26,7 +25,7 @@ const FindUs = () => {
         <div>
           <h5 className="text-[20px] font-bold">Opening Hours</h5>
           <p className="text-base mt-[5px]">
-            Lorem Ipsum is simply dummy text of the pri
+          Globally seize progressive markets through seamless testing procedures.
           </p>
         </div>
       </div>

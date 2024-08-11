@@ -113,15 +113,15 @@ const Nav = () => {
           open ? "max-h-96" : "max-h-0"
         } overflow-hidden`}
       >
-        <ul className="flex flex-col gap-4 items-start px-[20px] py-2 bg-white border-t border-gray-200">
+        <ul className="flex flex-col gap-4 items-start pl-[22px] py-2 bg-white border-t border-gray-200">
           {navLinks.map((link) => (
             <li key={link.path}>
               <Link
                 href={link.path}
                 className={
                   pathname === link.path
-                    ? "text-gray-700"
-                    : "hover:text-gray-700 transition-all duration-300"
+                    ? "text-rose-500"
+                    : "hover:text-rose-500 transition-all duration-300"
                 }
                 onClick={() => setOpen(false)} // Close menu on link click
               >
