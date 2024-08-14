@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <Toaster/>
         <AuthProvider>
           <Nav />
-          <div className="w-[90%] mt-5 mx-auto">{children}</div>
+          <div className="">{children}</div>
         </AuthProvider>
       </body>
     </html>

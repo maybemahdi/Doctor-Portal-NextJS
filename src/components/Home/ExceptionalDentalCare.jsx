@@ -4,7 +4,7 @@ import img from "../../../public/assets/images/treatment.png";
 
 const ExceptionalDentalCare = () => {
   return (
-    <div className="md:min-h-[calc(100vh-120px)] my-20 flex flex-col md:flex-row justify-between items-center gap-12">
+    <div className="md:px-8 w-[90%] mx-auto md:min-h-[calc(100vh-120px)] my-20 flex flex-col md:flex-row justify-between items-center gap-12">
     <div className="">
       <Image alt="Treatment Image" src={img} width={458} height={576} className="rounded-md" />
     </div>

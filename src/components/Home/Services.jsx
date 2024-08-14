@@ -1,5 +1,4 @@
 import React from "react";
-import "../../app/globals.css";
 import Image from "next/image";
 import fluoride from "../../../public/assets/images/fluoride.png";
 import cavity from "../../../public/assets/images/cavity.png";
@@ -7,7 +6,7 @@ import whitening from "../../../public/assets/images/whitening.png";
 
 const Services = () => {
   return (
-    <div className="mt-20 mb-10 flex flex-col items-center justify-center">
+    <div className="w-[90%] mx-auto mt-20 mb-10 flex flex-col items-center justify-center">
       <h3 className="text-primary-gradient text-[20px] font-bold text-center">
         OUR SERVICES
       </h3>

@@ -7,7 +7,7 @@ import phone from "../../../public/assets/icons/phone.svg";
 
 const FindUs = () => {
   return (
-    <div className="my-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
+    <div className="w-[90%] mx-auto my-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
       <div
         style={{
           background: "linear-gradient(90deg, #19D3AE -22.5%, #0FCFEC 120.83%)",

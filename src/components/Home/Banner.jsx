@@ -5,7 +5,7 @@ import bannerImg from "../../../public/assets/images/chair.png";
 const Banner = () => {
   return (
     <div
-      className="md:min-h-[calc(100vh-120px)] mt-10 md:mt-0 flex flex-col-reverse md:flex-row justify-between items-center gap-6"
+      className="w-[90%] mx-auto md:min-h-[calc(100vh-120px)] mt-10 md:mt-0 flex flex-col-reverse md:flex-row justify-between items-center gap-6"
     >
       <div className="basis-1/2 flex flex-col gap-3">
         <h3 className="text-secondary font-bold text-5xl w-full md:w-[90%] leading-normal">
